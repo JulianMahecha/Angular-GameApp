@@ -1,12 +1,19 @@
 import { Router } from 'express';
 
-class IndexRoutes {
+class GamesRoutes {
     /* Router */
     public router : Router = Router();
 
     /* Constructor */
     constructor() {
-        super();
-        
+        this.config();
+    }
+
+    /* Config */
+    config():void{
+        this.router.get('/', (req, res) => res.send('Games'));
     }
 }
+
+const gamesRoutes = new GamesRoutes();
+export default gamesRoutes.router;

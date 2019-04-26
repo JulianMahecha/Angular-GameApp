@@ -11,6 +11,7 @@ class Server{
     constructor() {
         this.app = express();
         this.config();
+        this.routes();
     }
 
     /* Configuration */
@@ -20,7 +21,8 @@ class Server{
 
     /* Routes */
     routes():void{
-
+        this.app.use(indexRoutes); 
+        this.app.use('/api/games', gamesRoutes);
     }
 
     /* Initial Method (Defines the port of the server and start listen it) */
