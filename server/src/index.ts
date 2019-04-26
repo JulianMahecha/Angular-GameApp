@@ -1,7 +1,8 @@
 import express, {Application} from 'express';
 import indexRoutes from './routes/indexRoutes';
 import gamesRoutes from './routes/gamesRoutes';
-
+import morgan from 'morgan';
+import cors from 'cors';
 
 class Server{
     
@@ -16,7 +17,11 @@ class Server{
 
     /* Configuration */
     config():void{
-        this.app.set('port', process.env.PORT || 3000);
+        this.app.set('port', process.env.PORT || 3000); /* Configurando puerto */
+        this.app.use(morgan('dev')); /* Usando Morgan */
+        this.app.use(cors()); /* Usando Cors */
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({extended:false}));
     }
 
     /* Routes */
