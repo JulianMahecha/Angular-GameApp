@@ -10,5 +10,14 @@ class GamesController {
     games(req, res) {
         database_1.default.query('DESCRIBE games');
     }
+    create(req, res) {
+        res.json({ text: 'creating a game' });
+    }
+    delete(req, res) {
+        res.json({ text: 'deleting a game' });
+    }
+    update(req, res) {
+        res.json({ text: 'updating a game' });
+    }
 }
 exports.gamesController = new GamesController();

@@ -13,6 +13,9 @@ class GamesRoutes {
     /* Config */
     config():void{
         this.router.get('/', gamesController.games);
+        this.router.post('/', gamesController.create); /* POST Petition */
+        this.router.delete('/:id', gamesController.delete); /* POST Petition */
+        this.router.put('/:id', gamesController.update); /* POST Petition */
     }
 }
 

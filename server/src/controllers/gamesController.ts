@@ -8,7 +8,19 @@ class GamesController {
 
     public games(req: Request, res: Response){
         pool.query('DESCRIBE games');
-        
+
+    }
+
+    public create(req: Request, res: Response){
+        res.json({text: 'creating a game'});
+    }
+
+    public delete(req: Request, res: Response){
+        res.json({text: 'deleting a game'});
+    }
+
+    public update(req: Request, res: Response){
+        res.json({text: 'updating a game'});
     }
 }
 
