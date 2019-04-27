@@ -6,18 +6,24 @@ class GamesController {
         
     }
 
-    public games(req: Request, res: Response){
-        pool.query('DESCRIBE games');
+    public list(req: Request, res: Response){
+        res.json({text: 'listing games'});
 
     }
 
-    public create(req: Request, res: Response){
-        res.json({text: 'creating a game'});
+    public async create(req: Request, res: Response):Promise<void>{
+        await pool.query('INSERT INTO games set ?', [req.body]);
+        res.json({text: 'Game Saved'});
     }
 
     public delete(req: Request, res: Response){
         res.json({text: 'deleting a game'});
     }
+
+    public getOne(req: Request, res: Response){
+        res.json({text: 'get only one game'});
+    }
+
 
     public update(req: Request, res: Response){
         res.json({text: 'updating a game'});
