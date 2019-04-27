@@ -10,7 +10,7 @@ class GamesRoutes {
     }
     /* Config */
     config() {
-        this.router.get('/', (req, res) => res.send('Games'));
+        this.router.get('/');
     }
 }
 const gamesRoutes = new GamesRoutes();
