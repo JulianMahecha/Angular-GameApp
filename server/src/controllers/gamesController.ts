@@ -1,4 +1,5 @@
 import {Request, Response} from 'express'
+import pool from '../database'
 
 class GamesController {
     constructor() {
@@ -6,7 +7,8 @@ class GamesController {
     }
 
     public games(req: Request, res: Response){
-        res.send('Games')
+        pool.query('DESCRIBE games');
+        
     }
 }
 

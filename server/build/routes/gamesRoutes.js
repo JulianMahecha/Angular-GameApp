@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const gamesController_1 = require("../controllers/gamesController");
 class GamesRoutes {
     /* Constructor */
     constructor() {
@@ -10,7 +11,7 @@ class GamesRoutes {
     }
     /* Config */
     config() {
-        this.router.get('/');
+        this.router.get('/', gamesController_1.gamesController.games);
     }
 }
 const gamesRoutes = new GamesRoutes();

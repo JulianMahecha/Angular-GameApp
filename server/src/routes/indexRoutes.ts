@@ -12,7 +12,7 @@ class IndexRoutes {
 
     /* Config */
     config():void{
-        this.router.get('/', );
+        this.router.get('/', indexController.index);
     }
 }
 
