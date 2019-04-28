@@ -28,7 +28,11 @@ class GamesController {
         });
     }
     delete(req, res) {
-        res.json({ text: 'deleting a game' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('DELETE FROM games WHERE id = ?', [id]);
+            res.json({ message: 'Game Deleted' });
+        });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -43,7 +47,11 @@ class GamesController {
         });
     }
     update(req, res) {
-        res.json({ text: 'updating a game' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield database_1.default.query('UPDATE games set ? WHERE id = ?', [req.body, id]);
+            res.json({ message: 'The game was updated' });
+        });
     }
 }
 exports.gamesController = new GamesController();

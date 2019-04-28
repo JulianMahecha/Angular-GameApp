@@ -17,8 +17,10 @@ class GamesController {
         res.json({text: 'Game Saved'});
     }
 
-    public delete(req: Request, res: Response){
-        res.json({text: 'deleting a game'});
+    public async delete(req: Request, res: Response):Promise<any>{
+        const { id } = req.params;
+        await pool.query('DELETE FROM games WHERE id = ?', [id])
+        res.json({message: 'Game Deleted'});
     }
 
     public async getOne(req: Request, res: Response):Promise<any>{
@@ -32,9 +34,10 @@ class GamesController {
         
     }
 
-
-    public update(req: Request, res: Response){
-        res.json({text: 'updating a game'});
+    public async update(req: Request, res: Response):Promise<void>{
+        const { id } = req.params;
+        await pool.query('UPDATE games set ? WHERE id = ?', [req.body, id])
+        res.json({message: 'The game was updated'});
     }
 }
 
