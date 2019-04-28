@@ -17,13 +17,24 @@ export class GameListComponent implements OnInit {
    }
 
   ngOnInit() {
-    
+    this.getGames();
+  }
 
+  getGames(){
     this.gamesService.getGames().subscribe(
       res => {
         this.games = res;
       },
       err => console.error(err)
+    );
+  }
+
+  deleteGame(id: string){
+    this.gamesService.deleteGame(id).subscribe(
+      res =>{
+        console.log(res);
+        this.getGames();
+      },
     );
   }
 
