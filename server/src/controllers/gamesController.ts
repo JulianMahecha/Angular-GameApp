@@ -6,8 +6,9 @@ class GamesController {
         
     }
 
-    public list(req: Request, res: Response){
-        res.json({text: 'listing games'});
+    public async list(req: Request, res: Response){
+        const games = await pool.query('SELECT * FROM games');
+        res.json(games);
 
     }
 
@@ -20,8 +21,15 @@ class GamesController {
         res.json({text: 'deleting a game'});
     }
 
-    public getOne(req: Request, res: Response){
-        res.json({text: 'get only one game'});
+    public async getOne(req: Request, res: Response):Promise<any>{
+        const {id} = req.params;
+        const game = await pool.query('SELECT * FROM games WHERE id = ?', [id]);
+        if (game.length) {
+            return res.json(game[0]);
+        }else{
+            res.status(404).json({text:'The game doesn\'t exist'});
+        }
+        
     }
 
 

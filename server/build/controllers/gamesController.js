@@ -16,7 +16,10 @@ class GamesController {
     constructor() {
     }
     list(req, res) {
-        res.json({ text: 'listing games' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const games = yield database_1.default.query('SELECT * FROM games');
+            res.json(games);
+        });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -28,7 +31,16 @@ class GamesController {
         res.json({ text: 'deleting a game' });
     }
     getOne(req, res) {
-        res.json({ text: 'get only one game' });
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const game = yield database_1.default.query('SELECT * FROM games WHERE id = ?', [id]);
+            if (game.length) {
+                return res.json(game[0]);
+            }
+            else {
+                res.status(404).json({ text: 'The game doesn\'t exist' });
+            }
+        });
     }
     update(req, res) {
         res.json({ text: 'updating a game' });
